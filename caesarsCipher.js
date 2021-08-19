@@ -10,7 +10,19 @@
  * All letters will be uppercase. Do not transform any non-alphabetic character (i.e. spaces, punctuation), but do pass them on.
  */
 function rot13(str) {
-    return str;
+    let lettersA2M = "ABCDEFGHIJKLM";
+    let lettersN2Z = "NOPQRSTUVWXYZ";
+    let decodedString = "";
+    for (let i = 0; i < str.length; i++) {
+        if (str[i].match(/[A-M]/)) {
+            decodedString += lettersN2Z[lettersA2M.indexOf(str[i])];
+        } else if (str[i].match(/[N-Z]/)) {
+            decodedString += lettersA2M[lettersN2Z.indexOf(str[i])];
+        } else {
+            decodedString += str[i];
+        }
+    }
+    return decodedString;
 }
-  
-rot13("SERR PBQR PNZC");
+
+console.log(rot13("SERR PBQR PNZC"));
